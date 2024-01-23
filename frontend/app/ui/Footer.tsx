@@ -1,5 +1,5 @@
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { IconLink } from "./IconLink";
+import { IconLink } from "../_components/IconLink";
 import { PageRow } from "./PageRow";
 import { VertSeparator } from "./VertSeparator";
 import { GithubUrl, LinkedInUrl } from "../constants";

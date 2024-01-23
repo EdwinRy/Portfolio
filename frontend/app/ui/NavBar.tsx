@@ -1,6 +1,6 @@
 import { VertSeparator } from "./VertSeparator";
 import { ThemeToggle } from "./ThemeToggle";
-import { IconLink } from "./IconLink";
+import { IconLink } from "../_components/IconLink";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { GithubUrl, LinkedInUrl, NavbarConsts } from "../constants";
 
