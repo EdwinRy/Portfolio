@@ -2,10 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
+.dark:root {
+  --drop-shadow-filter: drop-shadow(0 8px 8px rgba(255, 255, 255, 0.3));
+  --drop-shadow-filter-up: drop-shadow(0 18px 12px rgba(255, 255, 255, 0.2));
+}
+
+:root {
+  --drop-shadow-filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.3));
+  --drop-shadow-filter-up: drop-shadow(0 18px 12px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes rocketBounce {
+  0%, 100% {
+    transform: none;
+    animation-timing-function: cubic-bezier(0,0,0.2,1);
+    filter: var(--drop-shadow-filter);
+  }
+  
+  50% {
+    transform: translateY(-10px);
+    animation-timing-function: cubic-bezier(0.8,0,1,1);
+    filter: var(--drop-shadow-filter-up);
+  }
+}
+
+.hover\:rocketBounce:hover { animation: rocketBounce 700ms infinite; }
+
 html {
   overflow: hidden;
   height: 100%;
   width: 100%;
+  scroll-behavior: smooth;
 }
 
 body {

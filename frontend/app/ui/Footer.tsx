@@ -1,22 +1,21 @@
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { IconLink } from "../_components/IconLink";
 import { PageRow } from "./PageRow";
-import { VertSeparator } from "./VertSeparator";
 import { GithubUrl, LinkedInUrl } from "../constants";
+import { ScrollToTop } from "../_components/ScrollToTop";
 
 export const Footer = () => {
     return (
-        <PageRow
-            outerClassName="bg-tertiary-bg-light dark:bg-tertiary-bg-dark"
-            className="text-center pb-2">
-            <div className="flex">
-            <VertSeparator />
-            <IconLink icon={faLinkedin} href={LinkedInUrl}
-                title="Connect with me on LinkedIn!"/>
-            <IconLink icon={faGithub} href={GithubUrl}
-                title="Check out my Github!"/>
+        <PageRow outerClassName="bg-bg-3-light dark:bg-bg-3-dark"
+            innerClassName="text-center pb-4 pt-12 flex flex-col gap-5">
+            <div className="flex justify-center gap-8">
+                <IconLink icon={faLinkedin} href={LinkedInUrl} size="xl"
+                    title="Connect with me on LinkedIn!"/>
+                <IconLink icon={faGithub} href={GithubUrl} size="xl"
+                    title="Check out my Github!"/>
             </div>
-            <div className="text-center text-secondary-fg-light dark:text-secondary-fg-dark">
+            <ScrollToTop />
+            <div className="text-center text-fg-2-light dark:text-fg-2-dark">
                 &copy; Edwin Rybarczyk 2024
             </div>
         </PageRow>

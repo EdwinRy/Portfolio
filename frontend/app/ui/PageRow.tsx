@@ -1,24 +1,22 @@
 
-import { ReactNode } from "react"
+import { HTMLProps, ReactNode } from "react"
 
-interface Props {
-    children?: ReactNode | ReactNode[] | string
-    outerChildren?: ReactNode | ReactNode[] | string
-    outerClassName?: string
-    innerClassName?: string
-    className?: string
+type Props = {
+    id?: string,
+    children?: ReactNode,
+    outerChildren?: ReactNode | ReactNode[] | string,
+    outerClassName?: HTMLProps<HTMLElement>["className"],
+    innerClassName?: HTMLProps<HTMLElement>["className"],
 }
 
 export const PageRow = (
-    { children, outerChildren, outerClassName, innerClassName, className }: Props
+    { id="", children, outerChildren, outerClassName, innerClassName }: Props
 ) => {
     return (
-        <div className={`${outerClassName} w-full 
-            border-dashed border border-green-400`}
+        <div id={id} className={`${outerClassName} w-full
+            bg-bg-1-light dark:bg-bg-1-dark`}
         >
-            <div className={`${innerClassName} ${className} max-w-screen-xl h-full mx-auto
-                border-dashed border border-indigo-400`}
-            >
+            <div className={`${innerClassName} max-w-screen-xl h-full mx-auto`}>
                 {children}
             </div>
             {outerChildren}

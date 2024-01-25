@@ -10,16 +10,12 @@ interface Props {
 }
 
 export const IconLink = ({
-    icon, size="sm", href, className="", target="_blank", title,
-}: Props) => {
-
-    return (
+    icon, size="1x", href, className="", target="_blank", title,
+}: Props) =>
         <a href={href} title={title} target={target}
-            className={`text-2xl text-primary-text-light dark:text-primary-text-dark${className}`}
+            className={`text-2xl text-fg-1-light dark:text-fg-1-dark${className}`}
         >
             <FontAwesomeIcon icon={icon} size={size}
-                className=""
+                className="text-3xl"
             />
         </a>
-    )
-}

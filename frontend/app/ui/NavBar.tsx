@@ -1,5 +1,5 @@
-import { VertSeparator } from "./VertSeparator";
-import { ThemeToggle } from "./ThemeToggle";
+import { VertSeparator } from "../_components/VertSeparator";
+import { ThemeToggle } from "../_components/ThemeToggle";
 import { IconLink } from "../_components/IconLink";
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
 import { GithubUrl, LinkedInUrl, NavbarConsts } from "../constants";
@@ -8,8 +8,8 @@ const {height} = NavbarConsts;
 
 export const NavBar = () => {
     return (
-        <div className={`w-full p-4 px-7 border-dashed border border-orange-600
-            bg-primary-bg-light/85 dark:bg-primary-bg-dark/85
+        <div className={`w-full p-4 px-7
+            bg-bg-1-light/85 dark:bg-bg-1-dark/85
             z-50 max-height-[${height}] fixed`}
         >
             <div className="flex justify-between items-center">
