@@ -2,7 +2,7 @@ import { NavBar } from "./ui/NavBar"
 import { IntroScreen } from "./ui/IntroScreen"
 import { Footer } from "./ui/Footer"
 import { About } from "./ui/About"
-import { Stack } from "./ui/Stack"
+import { TechStack } from "./ui/TechStack"
 // import { Projects } from "./ui/Projects"
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
       <NavBar />
       <IntroScreen />
       <About />
-      <Stack />
+      <TechStack />
       {/* <Projects /> */}
       <Footer />
     </>

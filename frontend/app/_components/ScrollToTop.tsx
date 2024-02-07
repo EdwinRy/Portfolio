@@ -11,5 +11,4 @@ export const ScrollToTop = () =>
             console.log("here")
             document.getElementById("introScreen")
                 ?.scrollIntoView({ block: "start", behavior: "smooth" });}}
-
     />

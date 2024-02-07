@@ -3,5 +3,5 @@ export const GithubUrl = "https://github.com/EdwinRy";
 
 export const NavbarConsts = {
     width: "100%",
-    height: "50px",
+    height: "70px",
 }

@@ -14,7 +14,7 @@ export const Footer = () => {
                 <IconLink icon={faGithub} href={GithubUrl} size="xl"
                     title="Check out my Github!"/>
             </div>
-            <ScrollToTop />
+            <div><ScrollToTop /></div>
             <div className="text-center text-fg-2-light dark:text-fg-2-dark">
                 &copy; Edwin Rybarczyk 2024
             </div>
