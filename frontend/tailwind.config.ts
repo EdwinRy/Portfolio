@@ -38,11 +38,17 @@ const config: Config = {
             "dark": colors.zinc["800"],
             "light": colors.zinc["300"],
           },
+          "4": {
+            "dark": colors.zinc["300"],
+            "light": colors.zinc["800"],
+          },
         },
       },
       dropShadow: {
         "2xl-dark": "0 8px 8px rgba(255, 255, 255, 0.3)",
         "2xl-light": "0 8px 8px rgba(0, 0, 0, 0.3)",
+        "md-dark": "0 4px 6px rgba(255, 255, 255, 0.05)",
+        "md-light": "0 4px 6px rgba(0, 0, 0, 0.05)",
       },
     },
     container: {

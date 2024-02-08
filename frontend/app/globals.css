@@ -43,10 +43,10 @@ body {
 }
 
 @media (prefers-color-scheme: dark) {
-  html {
+  .dark html {
     background-color: theme("colors.bg.1.dark");
   }
-  body {
+  .dark body {
     background-color: theme("colors.bg.1.dark");
   }
 }

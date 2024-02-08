@@ -15,7 +15,7 @@ export const IconButton = ({
     onClick, className="", iconClassName="", title, icon, size="1x",
 }: Props) => {
     return (
-        <button className={`${className} group`}
+        <button className={`${className} group inline-block`}
             title={title} onClick={onClick}
         >
             <FontAwesomeIcon icon={icon} size={size}

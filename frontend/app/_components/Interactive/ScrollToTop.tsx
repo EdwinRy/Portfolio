@@ -1,7 +1,7 @@
 
 "use client"
 import { faSpaceAwesome } from "@fortawesome/free-brands-svg-icons";
-import { IconButton } from "../_components/IconButton";
+import { IconButton } from "./IconButton";
 
 export const ScrollToTop = () =>
     <IconButton icon={faSpaceAwesome} size="4x" title="Back to top"

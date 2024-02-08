@@ -9,7 +9,7 @@ interface Props {
     icon: FontAwesomeIconProps["icon"]
 }
 
-export const IconLink = ({
+export const LinkIcon = ({
     icon, size="1x", href, className="", target="_blank", title,
 }: Props) =>
         <a href={href} title={title} target={target}

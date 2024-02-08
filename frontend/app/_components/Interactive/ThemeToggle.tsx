@@ -2,7 +2,7 @@
 import { IconButton } from "./IconButton"
 import { faCircleHalfStroke } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
-import { Theme } from "../ThemeContext"
+import { Theme } from "../../ThemeContext"
 import { useTheme } from "next-themes"
 
 export const ThemeToggle = () => {

@@ -1,8 +1,8 @@
-import { SectionTitle } from "../_components/SectionTitle";
-import { PageRow } from "./PageRow";
+import { SectionTitle } from "../_components/Typography/SectionTitle";
+import { PageRow } from "../_components/Layout/PageRow";
 
 export const Projects = () =>
-    <PageRow >
-        <SectionTitle>Some of my projects...</SectionTitle>
+    <PageRow outerClassName="bg-bg-2-light dark:bg-bg-2-dark">
+        <SectionTitle>My Projects</SectionTitle>
     </PageRow>
 

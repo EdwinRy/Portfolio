@@ -14,7 +14,7 @@ export const PageRow = (
 ) => {
     return (
         <div id={id} className={`${outerClassName} w-full bg-bg-1-light dark:bg-bg-1-dark`}>
-            <div className={`${innerClassName} max-w-screen-xl h-full mx-auto`}>
+            <div className={`${innerClassName} max-w-screen-xl h-full mx-auto py-5`}>
                 {children}
             </div>
             {outerChildren}

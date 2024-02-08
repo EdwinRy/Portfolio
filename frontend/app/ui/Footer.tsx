@@ -1,17 +1,17 @@
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons";
-import { IconLink } from "../_components/IconLink";
-import { PageRow } from "./PageRow";
+import { LinkIcon } from "../_components/Interactive/LinkIcon";
+import { PageRow } from "../_components/Layout/PageRow";
 import { GithubUrl, LinkedInUrl } from "../constants";
-import { ScrollToTop } from "../_components/ScrollToTop";
+import { ScrollToTop } from "../_components/Interactive/ScrollToTop";
 
 export const Footer = () => {
     return (
         <PageRow outerClassName="bg-bg-3-light dark:bg-bg-3-dark"
             innerClassName="text-center pb-4 pt-12 flex flex-col gap-5">
             <div className="flex justify-center gap-8">
-                <IconLink icon={faLinkedin} href={LinkedInUrl} size="xl"
+                <LinkIcon icon={faLinkedin} href={LinkedInUrl} size="xl"
                     title="Connect with me on LinkedIn!"/>
-                <IconLink icon={faGithub} href={GithubUrl} size="xl"
+                <LinkIcon icon={faGithub} href={GithubUrl} size="xl"
                     title="Check out my Github!"/>
             </div>
             <div><ScrollToTop /></div>
