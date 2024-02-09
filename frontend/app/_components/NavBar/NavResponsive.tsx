@@ -8,22 +8,23 @@ import { IconSize } from "@/app/_utils/types";
 
 export interface NavResponsiveProps {
     links: ReactNode,
+    title?: ReactNode,
     socials: (size: IconSize) => ReactNode,
     buttons: ReactNode
 }
 
-export const NavResponsive = ({links, socials, buttons} : NavResponsiveProps) => {
+export const NavResponsive = ({title, links, socials, buttons} : NavResponsiveProps) => {
     const [menuOpen, setMenuOpen] = useState(false);
     const toggleMenu = () => setMenuOpen(!menuOpen);
 
     return (
         <>
-            <div className={`w-full p-5 px-6
+            <div className={`w-full p-5 px-6 transition duration-150
                     bg-bg-1-light/85 dark:bg-bg-1-dark/85
                     z-40 fixed`}
             >
-                <NavLarge links={links} socials={socials} buttons={buttons} />
-                <NavSmall toggleMenu={toggleMenu} />
+                <NavLarge title={title} links={links} socials={socials} buttons={buttons} />
+                <NavSmall title={title} toggleMenu={toggleMenu} />
             </div>
 
             <NavOverlayMenu toggleMenu={toggleMenu} visible={menuOpen}
@@ -32,17 +33,9 @@ export const NavResponsive = ({links, socials, buttons} : NavResponsiveProps) =>
     )
 }
 
-const HomeButton =
-    <div className="text-3xl">
-        <a className="hidden sm:block hover:underline decoration-stone-500/50
-            decoration-4 underline-offset-8" href="/">Edwin Rybarczyk</a>
-        <a className="block sm:hidden hover:underline decoration-stone-500/50
-            decoration-4 underline-offset-8" href="/">Edwin R.</a>
-    </div>
-
-const NavLarge = ({links, socials, buttons} : NavResponsiveProps) =>
+const NavLarge = ({title, links, socials, buttons} : NavResponsiveProps) =>
     <div className={`justify-between items-center lg:flex hidden max-height-[${height}]`}>
-        {HomeButton}
+        {title}
         <div className="flex gap-6 text-2xl">
             {links}
             <div><VertSeparator /></div>
@@ -52,10 +45,10 @@ const NavLarge = ({links, socials, buttons} : NavResponsiveProps) =>
         </div>
     </div>
 
-const NavSmall = (props: { toggleMenu: () => void }) =>
+const NavSmall = ({title, toggleMenu}: {title: ReactNode, toggleMenu: () => void }) =>
     <div className="justify-between items-center max-w-screen-xl flex lg:hidden">
-        {HomeButton}
+        {title}
         <div className="flex gap-6 text-2xl">
-            <IconButton onClick={props.toggleMenu} icon={faBars} />
+            <IconButton onClick={toggleMenu} icon={faBars} />
         </div>
     </div>

@@ -22,7 +22,7 @@ const config: Config = {
           },
           "3": {
             "dark": colors.zinc["950"],
-            "light": colors.zinc["300"],
+            "light": colors.zinc["400"],
           },
         },
         "fg": {
@@ -32,7 +32,7 @@ const config: Config = {
           },
           "2": {
             "dark": colors.zinc["500"],
-            "light": colors.zinc["700"],
+            "light": colors.zinc["600"],
           },
           "3": {
             "dark": colors.zinc["800"],
@@ -41,6 +41,20 @@ const config: Config = {
           "4": {
             "dark": colors.zinc["300"],
             "light": colors.zinc["800"],
+          },
+        },
+        "accent": {
+          "1": {
+            "dark": colors.indigo["400"],
+            "light": colors.indigo["600"],
+          },
+          "2": {
+            "dark": colors.indigo["300"],
+            "light": colors.indigo["500"],
+          },
+          "3": {
+            "dark": colors.yellow["200"],
+            "light": colors.yellow["600"],
           },
         },
       },

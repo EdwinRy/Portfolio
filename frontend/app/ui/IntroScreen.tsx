@@ -3,7 +3,7 @@ import { PageRow } from "../_components/Layout/PageRow";
 
 export const IntroScreen = () => {
     return (
-        <PageRow outerClassName="h-full" id="introScreen"
+        <PageRow id="introScreen" outerClassName="h-full transition duration-150"
             innerClassName="flex items-center justify-center"
         >
             <div className="flex items-center gap-6 flex-col md:flex-row">
@@ -14,7 +14,7 @@ export const IntroScreen = () => {
                 </div>
                 <div className="text-left">
                     <h1 className="text-3xl font-bold">Hi, I&apos;m Edwin Rybarczyk</h1>
-                    <p className="text-xl">Fullstack Software Developer</p>
+                    <p className="text-xl">Fullstack Software Developer 👨‍💻</p>
                 </div>
             </div>
         </PageRow>

@@ -14,10 +14,10 @@ export const SectionTitle = ({ children, id }: Props) => {
 
     return (
         <div id={id} className="w-full text-center p-5 scroll-m-20">
-            <div className="text-3xl underline
+            <h2 className="text-3xl underline
                 decoration-stone-500/50 decoration-4 underline-offset-8">
                 {children}
-            </div>
+            </h2>
         </div>
     );
 }

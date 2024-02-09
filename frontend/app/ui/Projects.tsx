@@ -3,6 +3,6 @@ import { PageRow } from "../_components/Layout/PageRow";
 
 export const Projects = () =>
     <PageRow outerClassName="bg-bg-2-light dark:bg-bg-2-dark">
-        <SectionTitle>My Projects</SectionTitle>
+        <SectionTitle id="projects">My Projects</SectionTitle>
     </PageRow>
 

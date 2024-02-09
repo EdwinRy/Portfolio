@@ -4,8 +4,8 @@ import { TitledGrid } from "../_components/Layout/TitledGrid";
 import { IconItemLink } from "@components/Interactive/IconItemLink";
 import {
     SiDotnet,
-    SiGooglebigquery, SiGooglecloud, SiJest, SiKubernetes, SiLooker,
-    SiMicrosoftazure, SiMongodb, SiPostgresql, SiPuppeteer, SiRedis,
+    SiGooglebigquery, SiGooglecloud, SiJest, SiJupyter, SiKubernetes, SiLooker,
+    SiMicrosoftazure, SiMongodb, SiPandas, SiPostgresql, SiPuppeteer, SiRedis,
     SiSnowflake, SiStorybook, SiTailwindcss, SiTypescript
 } from "react-icons/si";
 import { TbBrandNextjs, TbBrandReactNative } from "react-icons/tb";
@@ -16,7 +16,7 @@ import { DiPython } from "react-icons/di";
 export const TechStack = () =>
     <PageRow>
         <SectionTitle id="stack">My Tech Stack</SectionTitle>
-        <div className="grid grid-cols-1 gap-6 m-8 mb-24
+        <div className="grid grid-cols-1 gap-6 my-8 md:mx-8 mb-24
             md:grid-cols-2 md:gap-8"
         >
             <FrontEnd />
@@ -130,6 +130,16 @@ const Data = () =>
             link="https://cloud.google.com/bigquery"
             icon={<SiGooglebigquery className="text-[#006eff]" />}
             label="BigQuery"
+        />
+        <IconItemLink
+            link="https://jupyter.org"
+            icon={<SiJupyter className="text-[#ff9d00]" />}
+            label="Jupyter"
+        />
+        <IconItemLink
+            link="https://pandas.pydata.org"
+            icon={<SiPandas className="text-[#b139fb]" />}
+            label="Pandas"
         />
     </TitledGrid>
 

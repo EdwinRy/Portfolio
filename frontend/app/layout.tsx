@@ -10,7 +10,25 @@ const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
   title: "Edwin Rybarczyk",
-  description: "My portfolio website",
+  description: "Edwin Rybarczyk software developer website",
+  keywords: ["Edwin", "EdwinRy", "Developer", "Software", "Edwin Rybarczyk", "Fullstack"],
+  creator: "Edwin Rybarczyk",
+  publisher: "Edwin Rybarczyk",
+  openGraph: {
+    title: "Edwin Rybarczyk",
+    description: "Edwin Rybarczyk software developer website",
+    url: "https://edwinry.com",
+    siteName: "Edwin Rybarczyk",
+    images: [
+      {
+        url: "https://edwinry.com/img/Edwin.png",
+        width: 250,
+        height: 250,
+      },
+    ],
+    locale: "en_GB",
+    type: "website",
+  },
 }
 
 export default function RootLayout({
