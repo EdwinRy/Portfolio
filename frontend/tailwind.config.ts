@@ -61,6 +61,8 @@ const config: Config = {
       dropShadow: {
         "2xl-dark": "0 8px 8px rgba(255, 255, 255, 0.3)",
         "2xl-light": "0 8px 8px rgba(0, 0, 0, 0.3)",
+        "xl-dark": "0 4px 8px rgba(255, 255, 255, 0.1)",
+        "xl-light": "0 4px 8px rgba(0, 0, 0, 0.1)",
         "md-dark": "0 4px 6px rgba(255, 255, 255, 0.05)",
         "md-light": "0 4px 6px rgba(0, 0, 0, 0.05)",
       },

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
   keywords: ["Edwin", "EdwinRy", "Developer", "Software", "Edwin Rybarczyk", "Fullstack"],
   creator: "Edwin Rybarczyk",
   publisher: "Edwin Rybarczyk",
+  metadataBase: new URL("https://edwinry.com"),
   openGraph: {
     title: "Edwin Rybarczyk",
     description: "Edwin Rybarczyk software developer website",

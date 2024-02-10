@@ -45,11 +45,11 @@ const WhoAmI = () =>
                 I have a <Link href={GithubUrl}>GitHub page</Link> where I share
                 my personal projects, some of these are also listed below.
             </p>
-            <p>
+            {/* <p>
                 If you&apos;d like to connect with me, feel free to reach out
                 either through <Link href={LinkedInUrl}>LinkedIn</Link>, email,
                 or the <Link href="/contact">contact page</Link> on this site.
-            </p>
+            </p> */}
         </div>
     </div>
 
@@ -89,6 +89,8 @@ const WhatDoIDoSection = (
     { icon: ReactNode, label: string, children?: ReactNode }) =>
     <div className="flex flex-col items-center outline px-6 py-8 rounded-xl
         outline-2 outline-bg-1-light/50 dark:outline-bg-1-dark/50
+        hover:drop-shadow-xl-light
+        bg-bg-2-light dark:bg-bg-2-dark
         text-fg-1-light dark:text-fg-1-dark"
     >
         <div className="text-5xl mb-5 text-fg-2-light dark:text-fg-2-dark">

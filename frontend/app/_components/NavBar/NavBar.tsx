@@ -25,8 +25,8 @@ export const NavBar = () => {
             <NavLink link="/">Home</NavLink>
             <NavLink>About</NavLink>
             <NavLink>Stack</NavLink>
-            <NavLink>Projects</NavLink>
-            <NavLink link="/contact">Contact</NavLink>
+            {/* <NavLink>Projects</NavLink> */}
+            {/* <NavLink link="/contact">Contact</NavLink> */}
         </>;
 
     const socials = (size: IconSize) =>

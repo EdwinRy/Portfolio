@@ -12,7 +12,7 @@ export default function Home() {
       <IntroScreen />
       <About />
       <TechStack />
-      <Projects />
+      {/* <Projects /> */}
       <Footer />
     </>
   )

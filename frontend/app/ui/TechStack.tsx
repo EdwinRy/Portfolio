@@ -6,11 +6,11 @@ import {
     SiDotnet,
     SiGooglebigquery, SiGooglecloud, SiJest, SiJupyter, SiKubernetes, SiLooker,
     SiMicrosoftazure, SiMongodb, SiPandas, SiPostgresql, SiPuppeteer, SiRedis,
-    SiSnowflake, SiStorybook, SiTailwindcss, SiTypescript
+    SiSnowflake, SiStorybook, SiTailwindcss, SiTypescript,
 } from "react-icons/si";
 import { TbBrandNextjs, TbBrandReactNative } from "react-icons/tb";
 import { GrReactjs } from "react-icons/gr";
-import { FaGolang, FaNodeJs, FaRust } from "react-icons/fa6";
+import { FaAws, FaGolang, FaNodeJs, FaRust } from "react-icons/fa6";
 import { DiPython } from "react-icons/di";
 
 export const TechStack = () =>
@@ -160,5 +160,10 @@ const Other = () =>
             link="https://azure.microsoft.com"
             icon={<SiMicrosoftazure className="text-[#007bff]" />}
             label="Azure"
+        />
+        <IconItemLink
+            link="https://aws.amazon.com"
+            icon={<FaAws className="text-[#ffbb00]" />}
+            label="AWS"
         />
     </TitledGrid>
