@@ -3,7 +3,7 @@ import Image from "next/image";
 import { PageRow } from "../_components/Layout/PageRow";
 import { SectionSubtitle } from "@components/Typography/SectionSubtitle";
 import { Link } from "../_components/Interactive/Link";
-import { GithubUrl, LinkedInUrl } from "../constants";
+import { GithubUrl } from "../constants";
 import { LuBrainCircuit } from "react-icons/lu";
 import { FaMobile } from "react-icons/fa6";
 import { FaCogs, FaPaintBrush } from "react-icons/fa";
