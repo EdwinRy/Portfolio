@@ -12,7 +12,6 @@ func rootHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	port, found := GetEnv("SERVER_PORT")
 	if !found {
-		// panic("SERVER_PORT not found")
 		port = "8080"
 	}
 

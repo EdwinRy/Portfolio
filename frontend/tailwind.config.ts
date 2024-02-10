@@ -17,8 +17,9 @@ const config: Config = {
             "light": colors.zinc["100"],
           },
           "2": {
-            "dark": colors.zinc["800"],
-            "light": colors.zinc["300"],
+            "dark": "#1e1e21",
+            // "dark": colors.zinc["800"],
+            "light": colors.zinc["200"],
           },
           "3": {
             "dark": colors.zinc["950"],
