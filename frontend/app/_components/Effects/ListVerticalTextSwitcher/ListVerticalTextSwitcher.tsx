@@ -1,6 +1,6 @@
 "use client";
 import "./ListSwitcher.css";
-import React, { useEffect, useLayoutEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ReactNode } from "react";
 
 interface ListSwitcherProps {
@@ -8,6 +8,7 @@ interface ListSwitcherProps {
     height?: string,
 }
 
+// Todo: make this more generic
 export const ListVerticalTextSwitcher = (
     { children, height="-28px" }: ListSwitcherProps
 ) => {
@@ -16,26 +17,18 @@ export const ListVerticalTextSwitcher = (
         "--shiftItemHeight": height,
     }
 
-    const childCount = React.Children.count(children);
-    // const [currentChild, setCurrentChild ] = useState(0);
-
     const [childArray, setChildArray] = useState(React.Children.toArray(children));
-    const containerRef = React.createRef<HTMLDivElement>();
+    const [animActive, setAnimActive] = useState(false);
 
-    useLayoutEffect(() => {
+    useEffect(() => {
         const t1 = setTimeout(() => {
-            if (containerRef.current) {
-                containerRef.current.classList.add("shiftListContainerActive");
-            }
-        }, 1000);
+            setAnimActive(true);
+        }, 4500);
 
         const t2 = setTimeout(() => {
-            console.log("switch")
-            if (containerRef.current) {
-                containerRef.current.classList.remove("shiftListContainerActive");
-            }
+            setAnimActive(false);
             setChildArray(childArray.slice(1).concat(childArray.slice(0, 1)));
-        }, 4000);
+        }, 6000);
 
         return () => {
             clearTimeout(t1);
@@ -44,15 +37,14 @@ export const ListVerticalTextSwitcher = (
 
     }, [childArray]);
 
-    useEffect(() => { console.log('mounted'); }, [])
-
-    console.log(childCount, childArray)
+    const shifterClass = animActive
+        ? "shiftListContainer shiftListContainerActive"
+        : "shiftListContainer";
 
     return (
         <div className="shiftOuter">
-            <div className="shiftListContainer" ref={containerRef} style={style as any}>
+            <div className={shifterClass} style={style as any}>
                 {childArray.map((child, i) =>
-                    // <SwitcherItem key={i} child={child} ref={childRefs[i]} />
                     <div key={i} className="">
                         {child}
                     </div>

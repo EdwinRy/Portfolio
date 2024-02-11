@@ -17,8 +17,10 @@ export const IntroScreen = () => {
                     <h1 className="text-3xl font-bold">Hi, I&apos;m Edwin Rybarczyk</h1>
                     <div className="text-xl">
                         <ListVerticalTextSwitcher>
-                            <p>Fullstack Software Developer 👨‍💻</p>
-                            <p>Problem solver 🤔 </p>
+                            <p>Software Developer 👨‍💻</p>
+                            <p>Data Engineer 🧠</p>
+                            <p>Problem solver 🤔</p>
+                            <p>Continuous learner 🧑‍🎓</p>
                             <p>Fencer 🤺</p>
                         </ListVerticalTextSwitcher>
                     </div>
