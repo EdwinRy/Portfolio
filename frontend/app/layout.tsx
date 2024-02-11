@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   publisher: "Edwin Rybarczyk",
   metadataBase: new URL("https://edwinry.com"),
   openGraph: {
-    title: "Edwin Rybarczyk",
+    title: "Edwin Rybarczyk | Software Developer",
     description: "Edwin Rybarczyk software developer website",
     url: "https://edwinry.com",
     siteName: "Edwin Rybarczyk",
