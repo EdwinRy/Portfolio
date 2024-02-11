@@ -14,7 +14,10 @@ export const IntroScreen = () => {
                         className="rounded-3xl mx-auto w-[250px] h-[250px] object-cover" />
                 </div>
                 <div className="text-left">
-                    <h1 className="text-3xl font-bold">Hi, I&apos;m Edwin Rybarczyk</h1>
+                    <h1 className="text-3xl font-bold hidden sm:inline-block">
+                        Hi, I&apos;m Edwin Rybarczyk
+                    </h1>
+                    <h1 className="text-3xl font-bold sm:hidden">Hi, I&apos;m Edwin</h1>
                     <div className="text-xl">
                         <ListVerticalTextSwitcher>
                             <p>Software Developer 👨‍💻</p>
