@@ -21,8 +21,8 @@ export const IntroScreen = () => {
                     <div className="text-xl">
                         <ListVerticalTextSwitcher>
                             <p>Software Developer 👨‍💻</p>
-                            <p>Data Engineer 🧠</p>
                             <p>Problem solver 🤔</p>
+                            <p>ML Engineer 🧠</p>
                             <p>Continuous learner 🧑‍🎓</p>
                             <p>Fencer 🤺</p>
                         </ListVerticalTextSwitcher>

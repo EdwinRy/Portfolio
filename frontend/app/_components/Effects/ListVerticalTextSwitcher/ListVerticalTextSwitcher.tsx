@@ -23,12 +23,12 @@ export const ListVerticalTextSwitcher = (
     useEffect(() => {
         const t1 = setTimeout(() => {
             setAnimActive(true);
-        }, 4500);
+        }, 2000);
 
         const t2 = setTimeout(() => {
             setAnimActive(false);
             setChildArray(childArray.slice(1).concat(childArray.slice(0, 1)));
-        }, 6000);
+        }, 3300);
 
         return () => {
             clearTimeout(t1);
