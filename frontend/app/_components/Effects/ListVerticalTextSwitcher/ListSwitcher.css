@@ -1,0 +1,38 @@
+@keyframes shiftListContainerAnimation {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    25% {
+        transform: translateY(0) scale(0.85);
+    }
+    75% {
+        transform: translateY(var(--shiftItemHeight)) scale(0.85);
+    }
+    100% {
+        /* transform: translateY(-28px); */
+        transform: translateY(var(--shiftItemHeight)) scale(1);
+    }
+}
+
+.shiftListContainerActive {
+    --shiftItemHeight: -28px;
+
+
+    animation-name: shiftListContainerAnimation;
+    animation-duration: 1200ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+    transform-origin: 5% 50%;
+}
+
+.shiftListContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.shiftOuter {
+    height: 28px;
+    background-color: rgba(50, 50, 50, 50);
+    /* overflow: hidden; */
+}

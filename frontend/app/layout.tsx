@@ -9,7 +9,7 @@ config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Edwin Rybarczyk",
+  title: "Edwin Rybarczyk | Software Developer",
   description: "Edwin Rybarczyk software developer website",
   keywords: ["Edwin", "EdwinRy", "Developer", "Software", "Edwin Rybarczyk", "Fullstack"],
   creator: "Edwin Rybarczyk",

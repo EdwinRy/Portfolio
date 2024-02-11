@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { PageRow } from "../_components/Layout/PageRow";
+import { ListVerticalTextSwitcher } from "@components/Effects/ListVerticalTextSwitcher";
 
 export const IntroScreen = () => {
     return (
@@ -14,7 +15,13 @@ export const IntroScreen = () => {
                 </div>
                 <div className="text-left">
                     <h1 className="text-3xl font-bold">Hi, I&apos;m Edwin Rybarczyk</h1>
-                    <p className="text-xl">Fullstack Software Developer 👨‍💻</p>
+                    <div className="text-xl">
+                        <ListVerticalTextSwitcher>
+                            <p>Fullstack Software Developer 👨‍💻</p>
+                            <p>Problem solver 🤔 </p>
+                            <p>Fencer 🤺</p>
+                        </ListVerticalTextSwitcher>
+                    </div>
                 </div>
             </div>
         </PageRow>

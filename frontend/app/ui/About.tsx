@@ -88,7 +88,7 @@ const WhatDoIDoSection = (
     { icon, label, children }:
     { icon: ReactNode, label: string, children?: ReactNode }) =>
     <div className="flex flex-col items-center outline px-6 py-8 rounded-xl
-        outline-2 outline-bg-1-light/50 dark:outline-bg-1-dark/50
+        outline-2 outline-bg-1-light dark:outline-bg-1-dark
         hover:drop-shadow-xl-light
         bg-bg-2-light dark:bg-bg-2-dark
         text-fg-1-light dark:text-fg-1-dark"
