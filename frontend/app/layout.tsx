@@ -30,6 +30,11 @@ export const metadata: Metadata = {
     locale: "en_GB",
     type: "website",
   },
+  icons: {
+    icon: "./favicon.ico",
+    apple: "./apple-icon.ico",
+    shortcut: "./favicon.ico",
+  },
 }
 
 export default function RootLayout({
