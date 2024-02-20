@@ -4,22 +4,25 @@ import { PageRow } from "../_components/Layout/PageRow";
 import { ListVerticalTextSwitcher } from "@components/Effects/ListVerticalTextSwitcher";
 import { ParticleField } from "@components/ParticleField";
 import { useTheme } from "next-themes";
+import WebGL from "three/examples/jsm/capabilities/WebGL.js";
+
 
 export const IntroScreen = () => {
 
     const { resolvedTheme } = useTheme()
-    const isDark = resolvedTheme === "dark"
-    const postProcessing = isDark
-    const particleColour = isDark ? "white" : "black"
+    const isDark = resolvedTheme === "dark";
+    const postProcessing = isDark;
+    const particleColour = isDark ? "white" : "black";
+    const hasWebGL = WebGL.isWebGLAvailable();
 
     return (
         <>
             <PageRow id="introScreen" outerClassName="h-full transition duration-150 relative"
                 innerClassName="flex items-center justify-center"
             >
-                <div className="flex items-center gap-6 flex-col md:flex-row z-30
-                    p-10 rounded-3xl backdrop-blur-sm
-                    bg-bg-2-light/40 dark:bg-bg-2-dark/40">
+                <div className={`flex items-center gap-6 flex-col md:flex-row z-30 p-10 rounded-3xl 
+                    ${ hasWebGL && "backdrop-blur-sm bg-bg-2-light/40 dark:bg-bg-2-dark/40"}
+                `}>
                     <div>
                         <Image src="/img/Edwin.png" alt="Edwin Rybarczyk"
                             width="250" height="250" priority={true}
@@ -41,11 +44,11 @@ export const IntroScreen = () => {
                         </div>
                     </div>
                 </div>
-                <div className="absolute w-full h-full z-20"></div>
-                <ParticleField
+                {hasWebGL && <div className="absolute w-full h-full z-20"></div>}
+                {hasWebGL && <ParticleField
                     count={200}
                     particleColour={particleColour}
-                    postProcessing={postProcessing}/>
+                    postProcessing={postProcessing}/>}
             </PageRow>
         </>
     );
