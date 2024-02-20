@@ -1,4 +1,4 @@
-import { ChromaticAberration } from "./chromaticAberration";
+import { ChromaticAberration } from "../../../_utils/shaders/chromaticAberration";
 
 export const ParticlePostProcessingVS = /*glsl*/`
 precision highp float;
@@ -29,11 +29,6 @@ varying vec2 vUv;
 
 ${ChromaticAberration}
 
-float EaseInOutSine(float x)
-{ 
-    return -(cos(PI * x) - 1.0) / 2.0;
-}
-
 void main() {
     vec2 uv = vUv;
     vec4 color = texture2D(uScene, uv);
@@ -45,8 +40,6 @@ void main() {
         uScene, uv,
         uAberrationRGBOffset.x, uAberrationRGBOffset.y, uAberrationRGBOffset.z,
         distanceFactor);
-
-    chromatic.a *= EaseInOutSine(min(uTime * 0.2, 1.));
 
     gl_FragColor = chromatic;
 }

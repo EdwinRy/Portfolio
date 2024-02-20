@@ -3,8 +3,14 @@ import Image from "next/image";
 import { PageRow } from "../_components/Layout/PageRow";
 import { ListVerticalTextSwitcher } from "@components/Effects/ListVerticalTextSwitcher";
 import { ParticleField } from "@components/ParticleField";
+import { useTheme } from "next-themes";
 
 export const IntroScreen = () => {
+
+    const { resolvedTheme } = useTheme()
+    const isDark = resolvedTheme === "dark"
+    const postProcessing = isDark
+    const particleColour = isDark ? "white" : "black"
 
     return (
         <>
@@ -36,7 +42,10 @@ export const IntroScreen = () => {
                     </div>
                 </div>
                 <div className="absolute w-full h-full z-20"></div>
-                <ParticleField count={150} />
+                <ParticleField
+                    count={200}
+                    particleColour={particleColour}
+                    postProcessing={postProcessing}/>
             </PageRow>
         </>
     );
