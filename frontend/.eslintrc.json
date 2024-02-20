@@ -22,7 +22,7 @@
     "no-multiple-empty-lines": [
       "warn",
       {
-        "max": 1,
+        "max": 2,
         "maxEOF": 1
       }
     ],
@@ -38,6 +38,7 @@
     "no-var": "warn",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": "warn",
+    "react-hooks/exhaustive-deps": "off",
     "eol-last": [
       "warn",
       "always"

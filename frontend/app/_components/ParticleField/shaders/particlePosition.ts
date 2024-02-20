@@ -1,4 +1,4 @@
-import { snoise2d } from "@/app/_utils/snoise2d"
+import { snoise2d } from "@/app/_utils/shaders/snoise2d"
 
 export const ParticlePositionVS = /*glsl*/`
 
@@ -24,7 +24,6 @@ uniform float uFrequency;
 varying vec2 vUv;
 
 ${snoise2d}
-
 
 void main() {
     vec3 pos = texture2D(positions, vUv).rgb;

@@ -1,4 +1,4 @@
-export const snoise2d = `
+export const snoise2d = /*glsl*/`
 //
 // Description : Array and textureless GLSL 2D simplex noise function.
 //      Author : Ian McEwan, Ashima Arts.

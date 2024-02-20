@@ -1,10 +1,11 @@
+import { ChromaticAberration } from "./chromaticAberration";
 
 export const ParticlePostProcessingVS = /*glsl*/`
 precision highp float;
 varying vec2 vUv;
 
 void main() {
-    vUv = uv - 0.5;
+    vUv = uv;
 
     vec4 modelPosition = modelMatrix * vec4(position, 1.0);
     vec4 viewPosition = viewMatrix * modelPosition;
@@ -17,40 +18,36 @@ void main() {
 export const ParticlePostProcessingFS = /*glsl*/`
 precision highp float;
 
+float PI = 3.1415926;
+
 uniform sampler2D uScene;
+uniform float uTime;
+uniform float uAberrationDistanceFactor;
+uniform vec3 uAberrationRGBOffset;
+
 varying vec2 vUv;
 
+${ChromaticAberration}
 
-// vec4 chromaticAberration(vec2 uv, vec4 fragColor, float xOffset, float yOffset) {
-//     return vec4(
-//       texture(
-//         uScene, 
-//         vec2(uv.x + (0.1 * xOffset), uv.y + (0.1 * yOffset))
-//       ).x,
-//       texture(
-//         uScene, 
-//         uv
-//       ).y,
-//       texture(
-//         uScene, 
-//         uv
-//       ).z,
-//       1.0
-//     );
-// }
-
-
+float EaseInOutSine(float x)
+{ 
+    return -(cos(PI * x) - 1.0) / 2.0;
+}
 
 void main() {
     vec2 uv = vUv;
+    vec4 color = texture2D(uScene, uv);
 
-    vec4 color = texture2D(uScene, uv + 0.5);
-    color.r = mod(color.r, 0.5);
-    color.a = distance(uv, vec2(.0, .0));
-    // vec4 col = texture(uScene, uv);
-    // vec4 chrom = chromaticAberration(uv, col, 0.1, -0.1);
+    float distanceFromCenter = distance(uv, vec2(0.5, 0.5));
+    float distanceFactor = distanceFromCenter * uAberrationDistanceFactor;
 
-    // gl_FragColor = chrom;
-    gl_FragColor = color;
-  }
+    vec4 chromatic = chromaticAberration(
+        uScene, uv,
+        uAberrationRGBOffset.x, uAberrationRGBOffset.y, uAberrationRGBOffset.z,
+        distanceFactor);
+
+    chromatic.a *= EaseInOutSine(min(uTime * 0.2, 1.));
+
+    gl_FragColor = chromatic;
+}
 `;

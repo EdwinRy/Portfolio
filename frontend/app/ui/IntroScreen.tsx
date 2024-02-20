@@ -11,7 +11,9 @@ export const IntroScreen = () => {
             <PageRow id="introScreen" outerClassName="h-full transition duration-150 relative"
                 innerClassName="flex items-center justify-center"
             >
-                {/* <div className="flex items-center gap-6 flex-col md:flex-row z-30">
+                <div className="flex items-center gap-6 flex-col md:flex-row z-30
+                    p-10 rounded-3xl backdrop-blur-sm
+                    bg-bg-2-light/40 dark:bg-bg-2-dark/40">
                     <div>
                         <Image src="/img/Edwin.png" alt="Edwin Rybarczyk"
                             width="250" height="250" priority={true}
@@ -32,9 +34,9 @@ export const IntroScreen = () => {
                             </ListVerticalTextSwitcher>
                         </div>
                     </div>
-                </div> */}
-                {/* <div className="absolute w-full h-full z-20"></div> */}
-                <ParticleField count={200} />
+                </div>
+                <div className="absolute w-full h-full z-20"></div>
+                <ParticleField count={150} />
             </PageRow>
         </>
     );

@@ -1,6 +1,5 @@
-import { OrbitControls, OrthographicCamera } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import { useViewportResizeUpdate } from "@/app/_utils/useViewportResizeUpdate";
+import { OrthographicCamera } from "@react-three/drei";
+import { Canvas, Vector3 } from "@react-three/fiber";
 import { useFBO } from "@react-three/drei";
 import { createPortal, useFrame } from "@react-three/fiber";
 import { useMemo, useRef } from "react";
@@ -9,9 +8,22 @@ import { ParticlePositionFS, ParticlePositionVS } from "./shaders/particlePositi
 import { ParticlePointFS, ParticlePointVS } from "./shaders/particlePoint";
 import { ParticlePostProcessingFS, ParticlePostProcessingVS } from "./shaders/postProcessing";
 
-export const ParticleField = ({ count = 200 }) =>
+interface ParticleFieldParams {
+    count: number;
+    aberrationDistanceFactor?: number;
+    aberrationRGBOffset?: Vector3;
+    hasDarkMode?: boolean;
+    cameraZoom?: number;
+}
+
+export const ParticleField = ({
+    count = 200,
+    aberrationDistanceFactor = 0.3,
+    aberrationRGBOffset = [0.01, 0, -0.01],
+    cameraZoom = 1.2,
+}: ParticleFieldParams) =>
     <div className="w-full h-full absolute z-10">
-        <Canvas resize={{ scroll: false }} dpr={[1, 2]}>
+        <Canvas resize={{ scroll: false }} dpr={[1, 1]}>
             <OrthographicCamera
                 makeDefault
                 manual
@@ -20,32 +32,47 @@ export const ParticleField = ({ count = 200 }) =>
                 top={1}
                 bottom={-1}
                 near={1 / Math.pow(2, 53)}
-                far={10000.5}
+                far={100}
+                zoom={cameraZoom}
                 onUpdate={(c) => c.updateProjectionMatrix()}
             >
-                {/* <Particles count={count} /> */}
-                <PostProcessedParticles count={count} />
+                <PostProcessedParticles count={count}
+                    aberrationDistanceFactor={aberrationDistanceFactor}
+                    aberrationRGBOffset={aberrationRGBOffset} />
             </OrthographicCamera>
-            <OrbitControls />
         </Canvas>
     </div>;
 
-const PostProcessedParticles = ({ count = 10 }) => {
 
-    const particleFBO = useFBO()
-    const particleScene = useMemo(() => new THREE.Scene(), [])
+interface PostProcessingProps {
+    count: number;
+    aberrationDistanceFactor: number;
+    aberrationRGBOffset: Vector3;
+}
+
+const PostProcessedParticles = ({
+    count,
+    aberrationDistanceFactor,
+    aberrationRGBOffset,
+}: PostProcessingProps) => {
+    // Prepare particle scene
+    const particleFBO = useFBO();
+    const particleScene = useMemo(() => new THREE.Scene(), []);
+    const particleCamera = useMemo(() => new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1), [count]);
 
     const particlePortal = useMemo(() => {
         return createPortal(
             <Particles count={count} />, particleScene)
-    }, [count])
+    }, [count]);
 
-    const particleCamera = useMemo(() => {
-        const cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-        cam.position.z = 1;
-        return cam;
-    }, [count])
+    const uniforms = useMemo(() => ({
+        uScene : { value: particleFBO.texture },
+        uTime: { value: 0 },
+        uAberrationDistanceFactor: { value: aberrationDistanceFactor },
+        uAberrationRGBOffset: { value: aberrationRGBOffset },
+    }), [aberrationDistanceFactor, aberrationRGBOffset]);
 
+    // Render particles to an off-screen framebuffer
     useFrame((state) => {
         if (!particleFBO) return;
         if (!particleScene) return;
@@ -54,11 +81,10 @@ const PostProcessedParticles = ({ count = 10 }) => {
         gl.clear()
         gl.render(particleScene, particleCamera);
         gl.setRenderTarget(null);
-    });
 
-    const uniforms = useMemo(() => ({
-        uScene : { value: particleFBO.texture },
-    }), [])
+        const uTime = state.clock.elapsedTime;
+        uniforms.uTime.value = uTime;
+    });
 
     return (
         <>
@@ -76,18 +102,18 @@ const PostProcessedParticles = ({ count = 10 }) => {
     );
 }
 
-const displayQuad = new Float32Array([
+
+const particlePositionsQuad = new Float32Array([
     -1, -1, 0,
     1, -1, 0,
     1, 1, 0,
     -1, -1, 0,
     1, 1, 0,
     -1, 1, 0])
-const displayQuadUVs = new Float32Array([0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0]);
+const particlePositionsQuadUVs = new Float32Array([0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0]);
 
 const getInitialPositions = (count: number) => {
     const texture = new Float32Array(count * 4)
-
     for (let i = 0; i < count; i++) {
         const stride = i * 4
         texture[stride] = Math.random() * 2 - 1
@@ -101,10 +127,13 @@ const Particles = (
     { count = 10 }:
     {count: number, target?: THREE.WebGLRenderTarget<THREE.Texture>, particleScene?: THREE.Scene}
 ) => {
-    const update = useViewportResizeUpdate();
+    // We need to keep a reference to object holding point positions and
+    // position simulation texture
     const points = useRef<THREE.Points>(null)
     const positionsShaderMaterialRef = useRef<THREE.ShaderMaterial>(null)
 
+    // Generate list of positions with the x-coordinate corresponding to position
+    // of the particle in the position texture (it is 0 to 1 normalised)
     const particlesPosition = useMemo(() => {
         const particles = new Float32Array(count * 3);
         for (let i = 0; i < count; i++) {
@@ -112,22 +141,13 @@ const Particles = (
             particles[stride] = (i % count) / count;
         }
         return particles;
-    }, [count, update]);
+    }, [count]);
 
-    const positionCamera = useMemo(() =>
-        new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
-    , [update]);
+    // Create a scene with a camera for particle positions
+    const positionCamera = useMemo(() => new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1), []);
+    const positionScene = useMemo(() => new THREE.Scene(), [])
 
-    const positionScene = useMemo(() => new THREE.Scene(), [update])
-
-    const positionFbo = useFBO(count, 1, {
-        format: THREE.RGBAFormat,
-        type: THREE.FloatType,
-        stencilBuffer: false,
-        minFilter: THREE.NearestFilter,
-        magFilter: THREE.NearestFilter,
-    });
-
+    // Initial positional data for each particle in a count x 1 texture
     const positionsTexture = useMemo(() => {
         const tex = new THREE.DataTexture(
             getInitialPositions(count),
@@ -138,25 +158,43 @@ const Particles = (
         );
         tex.needsUpdate = true;
         return tex;
-    }, [count, update])
+    }, [count])
+
+    // Render target for particle positions simulation
+    const positionFbo = useFBO(count, 1, {
+        format: THREE.RGBAFormat,
+        type: THREE.FloatType,
+        stencilBuffer: false,
+        minFilter: THREE.NearestFilter,
+        magFilter: THREE.NearestFilter,
+    });
 
     useFrame((state) => {
         if (!points.current) return;
         if (!points.current.material) return;
+
         if (!positionsShaderMaterialRef.current) return;
         if (!positionsShaderMaterialRef.current.uniforms.positions) return;
 
+        const pointsMaterial = points.current.material as THREE.ShaderMaterial;
+        if (!pointsMaterial) return;
+
         const gl = state.gl;
         const uTime = state.clock.elapsedTime;
+
+        // Render particle positions off-screen
         gl.setRenderTarget(positionFbo)
         gl.clear()
         gl.render(positionScene, positionCamera);
         gl.setRenderTarget(null);
 
-        points.current.material.uniforms.uPositions.value = positionFbo.texture
+        // Feed rendered particle positions into particle positions uniform
+        pointsMaterial.uniforms.uPositions.value = positionFbo.texture
+        // Update particle simulation time
         positionsShaderMaterialRef.current.uniforms.uTime.value = uTime;
     });
 
+    // Draw a 1 by count quad containing particle positions
     const positions =
             <mesh>
                 <shaderMaterial ref={positionsShaderMaterialRef} uniforms={{
@@ -170,14 +208,14 @@ const Particles = (
                 <bufferGeometry>
                     <bufferAttribute
                         attach="attributes-position"
-                        count={displayQuad.length / 3}
-                        array={displayQuad}
+                        count={particlePositionsQuad.length / 3}
+                        array={particlePositionsQuad}
                         itemSize={3}
                     />
                     <bufferAttribute
                         attach="attributes-uv"
-                        count={displayQuadUVs.length / 2}
-                        array={displayQuadUVs}
+                        count={particlePositionsQuadUVs.length / 2}
+                        array={particlePositionsQuadUVs}
                         itemSize={2}
                     />
                 </bufferGeometry>
@@ -185,7 +223,7 @@ const Particles = (
 
     const positionPortal = useMemo(() => {
         return createPortal(positions, positionScene)
-    }, [count, update, positions])
+    }, [count])
 
     return (
         <>
