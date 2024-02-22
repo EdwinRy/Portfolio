@@ -30,7 +30,7 @@ const WhoAmI = () =>
                     className="rounded-full mx-auto w-[175px] h-[175px] object-cover" />
         </div>
         <div>
-            <h3 className="text-2xl mb-8 text-accent-2-light dark:text-accent-2-dark">
+            <h3 className="text-2xl mb-5 text-accent-2-light dark:text-accent-2-dark">
                 A software engineer experienced with full-stack, mobile apps
                 and data engineering
             </h3>
