@@ -5,15 +5,24 @@ import { ListVerticalTextSwitcher } from "@components/Effects/ListVerticalTextSw
 import { ParticleField } from "@components/ParticleField";
 import { useTheme } from "next-themes";
 import WebGL from "three/examples/jsm/capabilities/WebGL.js";
+import { useEffect, useState } from "react";
 
 
 export const IntroScreen = () => {
 
     const { resolvedTheme } = useTheme()
-    const isDark = resolvedTheme === "dark";
-    const postProcessing = isDark;
-    const particleColour = isDark ? "white" : "black";
-    const hasWebGL = WebGL.isWebGLAvailable();
+    const [mounted, setMounted] = useState(false);
+    const [state, setState] = useState<any>(null);
+    useEffect(() => {
+        const isDark = resolvedTheme === "dark";
+        const postProcessing = isDark;
+        const particleColour = isDark ? "white" : "black";
+        const hasWebGL = WebGL.isWebGLAvailable();
+        setState({
+            isDark, postProcessing, particleColour, hasWebGL,
+        })
+        setMounted(true)
+    }, [resolvedTheme])
 
     return (
         <>
@@ -21,8 +30,8 @@ export const IntroScreen = () => {
                 innerClassName="flex items-center justify-center"
             >
                 <div className={`flex items-center gap-6 flex-col md:flex-row z-30 p-10 rounded-3xl 
-                    ${ hasWebGL && "backdrop-blur-sm bg-bg-2-light/40 dark:bg-bg-2-dark/40"}
-                `}>
+                    ${ state?.hasWebGL && "backdrop-blur-sm bg-bg-2-light/40 dark:bg-bg-2-dark/40"}
+                `} suppressHydrationWarning>
                     <div>
                         <Image src="/img/Edwin.png" alt="Edwin Rybarczyk"
                             width="250" height="250" priority={true}
@@ -44,11 +53,15 @@ export const IntroScreen = () => {
                         </div>
                     </div>
                 </div>
-                {hasWebGL && <div className="absolute w-full h-full z-20"></div>}
-                {hasWebGL && <ParticleField
-                    count={200}
-                    particleColour={particleColour}
-                    postProcessing={postProcessing}/>}
+                {mounted && state?.hasWebGL &&
+                    <>
+                        <div className="absolute w-full h-full z-20"></div>
+                        <ParticleField
+                            count={200}
+                            particleColour={state?.particleColour}
+                            postProcessing={state?.postProcessing}/>
+                    </>
+                }
             </PageRow>
         </>
     );

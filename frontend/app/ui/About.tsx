@@ -10,15 +10,15 @@ import { FaCogs, FaPaintBrush } from "react-icons/fa";
 import { ReactNode } from "react";
 
 export const About = () =>
-    <PageRow outerClassName="bg-bg-2-light dark:bg-bg-2-dark pb-20">
+    <PageRow outerClassName="bg-bg-2-light dark:bg-bg-2-dark pb-24">
         <SectionTitle id="about">About Me</SectionTitle>
         <WhoAmI />
         <WhatDoIDo />
     </PageRow>
 
 const WhoAmI = () =>
-    <div className="mx-auto w-fit pt-2 gap-x-10 gap-y-3 max-w-3xl pb-16
-        grid md:grid-cols-[max-content_1fr] md:pt-7 md:gap-y-6"
+    <div className="mx-auto w-fit pt-2 gap-x-10 gap-y-3 max-w-3xl pb-20
+        grid md:grid-cols-[max-content_1fr] md:py-16 md:gap-y-8"
     >
         <SectionSubtitle>
             Who am I?
@@ -30,7 +30,7 @@ const WhoAmI = () =>
                     className="rounded-full mx-auto w-[175px] h-[175px] object-cover" />
         </div>
         <div>
-            <h3 className="text-2xl mb-5 text-accent-2-light dark:text-accent-2-dark">
+            <h3 className="text-2xl mb-8 text-accent-2-light dark:text-accent-2-dark">
                 A software engineer experienced with full-stack, mobile apps
                 and data engineering
             </h3>
@@ -54,7 +54,7 @@ const WhoAmI = () =>
     </div>
 
 const WhatDoIDo = () =>
-    <div className="text-center pt-8 md:px-10">
+    <div className="text-center pt-14 md:px-10">
         <SectionSubtitle>
             What do I do?
         </SectionSubtitle>
