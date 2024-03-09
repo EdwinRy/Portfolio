@@ -9,14 +9,14 @@ config.autoAddCss = false;
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Edwin Rybarczyk | Software Developer",
+  title: "Edwin Rybarczyk | Senior Software Developer",
   description: "Edwin Rybarczyk software developer website",
   keywords: ["Edwin", "EdwinRy", "Developer", "Software", "Edwin Rybarczyk", "Fullstack"],
   creator: "Edwin Rybarczyk",
   publisher: "Edwin Rybarczyk",
   metadataBase: new URL("https://edwinry.com"),
   openGraph: {
-    title: "Edwin Rybarczyk | Software Developer",
+    title: "Edwin Rybarczyk | Senior Software Developer",
     description: "Edwin Rybarczyk software developer website",
     url: "https://edwinry.com",
     siteName: "Edwin Rybarczyk",
